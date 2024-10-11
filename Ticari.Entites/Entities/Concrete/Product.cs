@@ -9,6 +9,10 @@ namespace Ticari.Entities.Entities.Concrete
 {
     public class Product:BaseEntity
     {
-
+        public string ProductName { get; set; }
+        public string? ProductDescription { get; set; }
+        public decimal UnitPrice { get; set; }
+        public decimal Amount { get; set; }
+        public ICollection<Category> Categories { get; set; }
     }
 }
