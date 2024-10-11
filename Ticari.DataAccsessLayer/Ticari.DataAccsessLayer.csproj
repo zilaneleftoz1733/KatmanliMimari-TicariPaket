@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ticari.Entites\Ticari.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GenericRepository\Dapper\" />
+  </ItemGroup>
+
 </Project>
