@@ -14,7 +14,9 @@ namespace Ticari.DataAccsessLayer.GenericRepository.ECore.Abstract
         public int Update(T entity);
         public int Delete(T entity);
 
-        public T GetById(int id);
+        public T? GetById(int id);
+        public T? Get(Expression<Func<T, bool>> predicate);
+
         public List<T>? GetAll(Expression<Func<T,bool>>predicate=null);//(sorgu yazabilmek için bu sorguyu vermek lazım p öyledir ki gibi
 
         public IQueryable<T>? GetAllInclude(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] include);
