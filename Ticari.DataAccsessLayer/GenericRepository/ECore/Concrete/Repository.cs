@@ -73,8 +73,6 @@ namespace Ticari.DataAccsessLayer.GenericRepository.ECore.Concrete
         {
             return _dbContext.Set<T>().FirstOrDefault(predicate);
         }
-
-
         #endregion
     }
 }

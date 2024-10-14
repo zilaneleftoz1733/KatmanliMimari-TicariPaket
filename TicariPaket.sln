@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticari.Entities", "Ticari.Entites\Ticari.Entities.csproj", "{11D61B43-A640-4645-8D8A-85B6D88DA009}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticari.Entities", "Ticari.Entites\Ticari.Entities.csproj", "{11D61B43-A640-4645-8D8A-85B6D88DA009}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticari.DataAccsessLayer", "Ticari.DataAccsessLayer\Ticari.DataAccsessLayer.csproj", "{F374AE24-91DB-4846-A046-CF71FCDDD25E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticari.DataAccsessLayer", "Ticari.DataAccsessLayer\Ticari.DataAccsessLayer.csproj", "{F374AE24-91DB-4846-A046-CF71FCDDD25E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticari.BusinessLayer", "Ticari.BusinessLayer\Ticari.BusinessLayer.csproj", "{9515B227-064C-4581-853C-FBF36A4F0A17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticari.BusinessLayer", "Ticari.BusinessLayer\Ticari.BusinessLayer.csproj", "{9515B227-064C-4581-853C-FBF36A4F0A17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticari.WebMVC", "Ticari.WebMVC\Ticari.WebMVC.csproj", "{CD472A65-641E-47AA-A612-36416B1153AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticari.WebMVC", "Ticari.WebMVC\Ticari.WebMVC.csproj", "{CD472A65-641E-47AA-A612-36416B1153AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicariTestConsole", "TicariTestConsole\TicariTestConsole.csproj", "{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CD472A65-641E-47AA-A612-36416B1153AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD472A65-641E-47AA-A612-36416B1153AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD472A65-641E-47AA-A612-36416B1153AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
