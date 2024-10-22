@@ -9,6 +9,9 @@ using Ticari.Entities.Entities.Concrete;
 
 
 
+
+
+
 namespace Ticari.Entities.DBContexts
 {
     public class SQLDbContext : DbContext
