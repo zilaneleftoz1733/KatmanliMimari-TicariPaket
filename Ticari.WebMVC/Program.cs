@@ -1,6 +1,9 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Ticari.Entities.DBContexts;
 using Ticari.WebMVC.Extensions;
+using Ticari.WebMVC.MyProfile;
 
 namespace Ticari.WebMVC
 {
@@ -17,8 +20,14 @@ namespace Ticari.WebMVC
             var constr = builder.Configuration.GetConnectionString("Ticari");
             builder.Services.AddDbContext<SQLDbContext>(options => options.UseSqlServer(constr));
             #endregion
+            builder.Services.AddAutoMapper(p => p.AddProfile<AutoMapperProfile>());
+            builder.Services.AddNotyf(p =>
+            {
+                p.Position = NotyfPosition.BottomRight;
+                p.DurationInSeconds = 7;
+                p.IsDismissable = true;
 
-
+            });
 
             builder.Services.AddTicariService();
 
@@ -30,7 +39,7 @@ namespace Ticari.WebMVC
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-
+            app.UseNotyf();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -38,10 +47,11 @@ namespace Ticari.WebMVC
             app.MapControllerRoute(
 
                 name: "default",
-                pattern: "{controller=Account}/{action=UserInsert}/{id?}"
+                pattern: "{controller=Home}/{action=Index}/{id?}"
                 );
 
             app.Run();
         }
     }
 }
+

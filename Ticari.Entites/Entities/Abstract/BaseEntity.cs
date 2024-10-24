@@ -9,6 +9,6 @@ namespace Ticari.Entities.Entities.Abstract
     public abstract class BaseEntity
     {
         public int Id { get; set; }
-        public DateTime CreateDate{ get; set; }
+        public DateTime CreateDate{ get; set; } = DateTime.Now;
     }
 }
