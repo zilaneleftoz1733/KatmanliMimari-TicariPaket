@@ -24,7 +24,18 @@ namespace Ticari.Entities.DBContexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Gsm116> Gsm116s { get; set; }
+        public DbSet<MyUser> Users { get; set; }
+        public DbSet<Role> Roller { get; set; }
 
+        public SQLDbContext()
+        {
+            
+        }
+
+        public SQLDbContext(DbContextOptions<SQLDbContext> options):base(options)
+        {
+            
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
