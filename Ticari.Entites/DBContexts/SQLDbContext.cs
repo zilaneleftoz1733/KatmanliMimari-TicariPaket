@@ -26,6 +26,7 @@ namespace Ticari.Entities.DBContexts
         public DbSet<Gsm116> Gsm116s { get; set; }
         public DbSet<MyUser> Users { get; set; }
         public DbSet<Role> Roller { get; set; }
+        public DbSet<Menu> Menuler { get; set; }
 
         public SQLDbContext()
         {

@@ -19,9 +19,9 @@ namespace Ticari.WebMVC.Controllers
         public IActionResult Index()
         {
 
-            notyfService.Success("Iþlem Baþarýlý");
-            notyfService.Error("Hatalý iþlem");
-            notyfService.Information("Iþlem Tamam");
+            notyfService.Success("ISlem Basarili");
+            notyfService.Error("Hatali i?lem");
+            notyfService.Information("ISlem Tamam");
             notyfService.Warning("Dikkat..");
 
 

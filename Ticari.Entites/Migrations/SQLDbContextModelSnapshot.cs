@@ -110,6 +110,103 @@ namespace Ticari.Entities.Migrations
                     b.ToTable("Gsm116s");
                 });
 
+            modelBuilder.Entity("Ticari.Entities.Entities.Concrete.Menu", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ActionName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("AreaName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ControllerName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CssName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("IconName")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("MenuName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("OrderNo")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParentMenuId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.HasIndex("ParentMenuId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Menuler");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ActionName = "Index",
+                            AreaName = "Admin",
+                            ClassName = "far fa-circle nav-icon",
+                            ControllerName = "Home",
+                            CreateDate = new DateTime(2024, 10, 25, 12, 59, 51, 926, DateTimeKind.Local).AddTicks(807),
+                            CssName = "",
+                            MenuName = "Home",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ActionName = "Index",
+                            AreaName = "Admin",
+                            ClassName = "far fa-circle nav-icon",
+                            ControllerName = "Product",
+                            CreateDate = new DateTime(2024, 10, 25, 12, 59, 51, 926, DateTimeKind.Local).AddTicks(811),
+                            CssName = "",
+                            MenuName = "Product",
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ActionName = "Index",
+                            AreaName = "Admin",
+                            ClassName = "far fa-circle nav-icon",
+                            ControllerName = "Account",
+                            CreateDate = new DateTime(2024, 10, 25, 12, 59, 51, 926, DateTimeKind.Local).AddTicks(814),
+                            CssName = "",
+                            MenuName = "Users",
+                            RoleId = 3
+                        });
+                });
+
             modelBuilder.Entity("Ticari.Entities.Entities.Concrete.MyUser", b =>
                 {
                     b.Property<int>("Id")
@@ -268,6 +365,21 @@ namespace Ticari.Entities.Migrations
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Ticari.Entities.Entities.Concrete.Menu", b =>
+                {
+                    b.HasOne("Ticari.Entities.Entities.Concrete.Menu", "ParentMenu")
+                        .WithMany()
+                        .HasForeignKey("ParentMenuId");
+
+                    b.HasOne("Ticari.Entities.Entities.Concrete.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
+
+                    b.Navigation("ParentMenu");
+
+                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }

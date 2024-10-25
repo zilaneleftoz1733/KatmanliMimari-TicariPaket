@@ -10,9 +10,9 @@ using AutoMapper;
 namespace Ticari.WebMVC.Controllers
 {
     public class AccountController(IManager<Role> roleManager
-                                   , IManager<MyUser> userManager
-                                   , INotyfService notyfService
-                                    , IMapper mapper) : Controller
+                                    , IManager<MyUser> userManager
+                                    , INotyfService notyfService
+                                     , IMapper mapper) : Controller
     {
 
 
@@ -74,7 +74,7 @@ namespace Ticari.WebMVC.Controllers
 
             // userManager.Create(insertVM);
 
-            return RedirectToAction("Index", "Account");
+            return RedirectToAction("Index", "Account", new { Area = "Admin" });
 
         }
     }
