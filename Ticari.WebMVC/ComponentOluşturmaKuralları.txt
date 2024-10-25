@@ -1,0 +1,9 @@
+﻿
+﻿1- Genelde Projenin root kisminda Components isminde bir klasor olusturulur
+2- Bu klasorde sonu ViewComponent ile bitecek sekilde bir class olusturulur.
+3- Class ViewComponent'ten inherit almak zorundadir. 
+4- Mutlaka InvoceAsync() metodu tanimlanmalidir. Yoksa Calismaz
+5- InvoceAsync icerisinden mutlaka bir View Donulmasi gerekir
+6- View'in bulunmasi gerekn klasor Shared icerisinde Components icerisinde <ComponentAdi> şeklinde bir 
+   Klasor olmalidir.
+7- Klasorun icindeki view'in ismi Default.cshtml olmak zorundadir. Miarisel olarak boyle olmasi gerekiyor

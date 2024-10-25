@@ -44,7 +44,7 @@ namespace Ticari.DataAccsessLayer.GenericRepository.ECore.Concrete
         #region select metodları
         public List<T>? GetAll(Expression<Func<T, bool>> predicate = null)
         {
-            if (predicate == null)
+            if (predicate != null)
             {
                 return _dbContext.Set<T>().Where(predicate).ToList();
             }
