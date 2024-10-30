@@ -1,5 +1,6 @@
-using AspNetCoreHero.ToastNotification;
+﻿using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Ticari.Entities.DBContexts;
 using Ticari.WebMVC.Extensions;
@@ -18,9 +19,12 @@ namespace Ticari.WebMVC
 
             #region DbContext Registiration
             var constr = builder.Configuration.GetConnectionString("Ticari");
-            builder.Services.AddDbContext<SQLDbContext>(options => options.UseSqlServer(constr));
+            builder.Services.AddDbContext<DbContext>(options => options.UseSqlServer(constr));
             #endregion
             builder.Services.AddAutoMapper(p => p.AddProfile<AutoMapperProfile>());
+
+
+            #region Notify Service Configuration
             builder.Services.AddNotyf(p =>
             {
                 p.Position = NotyfPosition.BottomRight;
@@ -28,6 +32,23 @@ namespace Ticari.WebMVC
                 p.IsDismissable = true;
 
             });
+            #endregion
+
+            #region Cookie Base Authentication
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.Name = "IstkaFullData";
+                    options.LoginPath = "/Account/Login";
+                    options.LogoutPath = "/Account/Logout";
+                    options.AccessDeniedPath = "/Account/ErisimHatasi";
+                    options.Cookie.HttpOnly = true; // Tarayicidaki diger scriptler okuyamasin
+                    options.Cookie.SameSite = SameSiteMode.Strict;//Baþka tarayicilar tarafindan ulasilamasin
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+                    options.SlidingExpiration = true;//Sitede herhangi bir hareket oldugunda sureyi 10 dakika uzatir
+
+                });
+            #endregion
 
             builder.Services.AddTicariService();
 
@@ -42,7 +63,9 @@ namespace Ticari.WebMVC
             app.UseNotyf();
             app.UseRouting();
 
+            app.UseAuthentication(); //Burada ki siralama onemli
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -50,6 +73,13 @@ namespace Ticari.WebMVC
                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
             });
+
+            //TODO : Rota Tanimlamasina bakilacak
+            //app.MapControllerRoute(
+
+            //   name: "login",
+            //    pattern: "login",
+            //    defaults: new { controller = "Account", action = "Login" });
 
             app.MapControllerRoute(
 
@@ -62,6 +92,4 @@ namespace Ticari.WebMVC
             app.Run();
         }
     }
-
 }
-

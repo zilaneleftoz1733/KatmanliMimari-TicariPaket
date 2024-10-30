@@ -1,13 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Ticari.WebMVC.Areas.Admin.Controllers
 {
+    [Authorize]
     [Area("Admin")]
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
+        [Area("Admin")]
+        [Authorize]
+            public IActionResult Index()
+            {
+                var cookies = HttpContext.Request.Cookies;
+                return View();
+            }
         }
-    }
 }
