@@ -11,7 +11,7 @@
 
 
         <div class="card-body">
-            <form asp-action="UserInsert" method="post">
+            <form asp-action="UserInsert" method="post" enctype="multipart/form-data">
 
                 <div class="row">
                     @* Ekrana bir row atayoruz ve atilan row'u 3 parçaya boluyoruz. 1. parca 2 column dan olusacak label olusacak. Digeri input icin 6 parca ve en son validation mesajlari icin de 4 parça ayiriyoruz*@
@@ -108,8 +108,44 @@
                         <span asp-validation-for="Cinsiyet" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-2">
+                        <label asp-for=Roller></label>
+                    </div>
+                    <div class="col-2">
+                        <ul class="list-group">
 
 
+                            @for (int i = 0; i < Model.Roller.Count; i++)
+                            {
+                                <li class="list-group-item">
+
+
+                                    <input type="checkbox" asp-for="@Model.Roller[i].IsChecked">
+                                    <label asp-for="@Model.Roller[i]">@Model.Roller[i].LabelName</label>
+                                    <input type="hidden" asp-for="@Model.Roller[i].Id" />
+                                    <input type="hidden" asp-for="@Model.Roller[i].LabelName" />
+
+                                </li>
+                            }
+                        </ul>
+
+                    </div>
+                    <div class="col-4">
+                        <span asp-validation-for="Roller" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <label asp-for=Picture></label>
+                    </div>
+                    <div class="col-6">
+                        <input asp-for=Picture type="file" accept="image/png, image/jpeg" />
+                    </div>
+                    <div class="col-4">
+                        <span asp-validation-for="Picture" class="text-danger"></span>
+                    </div>
+                </div>
                 <div class="row mt-3">
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary">Kaydet</button>

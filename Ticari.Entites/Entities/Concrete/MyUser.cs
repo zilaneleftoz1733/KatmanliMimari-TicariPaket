@@ -19,6 +19,7 @@ namespace Ticari.Entities.Entities.Concrete
         public bool? Cinsiyet { get; set; }
         public string Password { get; set; }
 
+        public string? PhotoPath { get; set; }
         public List<Role>? Roller { get; set; }
     }
 }

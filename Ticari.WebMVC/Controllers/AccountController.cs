@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Data;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using Ticari.BusinessLayer.Managers.Abstract;
 using Ticari.Entities.Entities.Concrete;
 using Ticari.WebMVC.Models.VMs.Account;
-using Ticari.BusinessLayer.Managers.Abstract;
-using AspNetCoreHero.ToastNotification.Abstractions;
-using Ticari.WebMVC.MyProfile;
-using AutoMapper;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 
 namespace Ticari.WebMVC.Controllers
 {
@@ -152,4 +150,3 @@ namespace Ticari.WebMVC.Controllers
         }
     }
 }
-//zeynepe tıklayınca açılsın kendi bilgileri gelsin

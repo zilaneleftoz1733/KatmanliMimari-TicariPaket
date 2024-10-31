@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using Ticari.Entities.Entities.Concrete;
 
 namespace Ticari.WebMVC.Models.VMs.Account
 {
@@ -32,7 +34,7 @@ namespace Ticari.WebMVC.Models.VMs.Account
         [DataType(DataType.PhoneNumber)]
         public string Gsm { get; set; }
 
-        public bool? Cinsiyet { get; set; }
+        public bool Cinsiyet { get; set; }
 
 
         [Required(ErrorMessage = "Şifre Alani zorunludur")]
@@ -48,5 +50,9 @@ namespace Ticari.WebMVC.Models.VMs.Account
         [DisplayName("Şifre Tekrar")]
         [DataType(DataType.Password)]
         public string RePassword { get; set; }
+
+        public IFormFile Picture { get; set; }
+
+        public List<CheckBoxVM> Roller { get; set; } = new List<CheckBoxVM>();
     }
 }
