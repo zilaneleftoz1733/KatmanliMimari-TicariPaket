@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+
 using Ticari.BusinessLayer.Managers.Abstract;
 using Ticari.Entities.Entities.Concrete;
 using Ticari.WebMVC.Models.VMs.Account;
@@ -64,7 +65,8 @@ namespace Ticari.WebMVC.Controllers
                 new Claim(ClaimTypes.MobilePhone,user.Gsm),
                 new Claim(ClaimTypes.Role,roller),
                 new Claim(ClaimTypes.Gender,user.Cinsiyet.ToString()),
-                new Claim(ClaimTypes.NameIdentifier,"12312312311")
+                new Claim(ClaimTypes.NameIdentifier,"12312312311"),
+                new Claim(ClaimTypes.UserData,user.PhotoPath)
 
             };
             var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -81,7 +83,7 @@ namespace Ticari.WebMVC.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 userClaimPrinciple, authenticationProperty);
 
-            if (roller.Contains("admin"))
+            if (roller.Contains("Admin"))
             {
                 return RedirectToAction("Index", "Home", new { Area = "Admin" });
             }

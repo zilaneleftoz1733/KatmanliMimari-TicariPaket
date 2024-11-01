@@ -15,11 +15,12 @@ namespace Ticari.WebMVC
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation(); // Burasini eklemeyi unutmusuz
 
             #region DbContext Registiration
             var constr = builder.Configuration.GetConnectionString("Ticari");
-            builder.Services.AddDbContext<DbContext>(options => options.UseSqlServer(constr));
+            builder.Services.AddDbContext<SQLDbContext>(options => options.UseSqlServer(constr));
             #endregion
             builder.Services.AddAutoMapper(p => p.AddProfile<AutoMapperProfile>());
 

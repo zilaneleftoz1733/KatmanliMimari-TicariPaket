@@ -1,4 +1,6 @@
-﻿﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
+﻿﻿@using System.Security.Claims
+@using System.Drawing
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="~/AdminLte3.2/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -10,13 +12,31 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="~/AdminLte3.2/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                @{
+                    string imagePAth = User.FindFirstValue(ClaimTypes.UserData);
+                    imagePAth =null;
+                    if (imagePAth != null)
+                    {
+                    string newPath = imagePAth.Split("wwwroot")[1];
+                    newPath = newPath.Replace(@"\", @"/");
+                <img src="@newPath" class="img-circle elevation-2" alt="User Image" width="162" height="162">
+                        
+                    }
+
+                    // System.Drawing.Image img = System.Drawing.Image.FromFile(imagePAth);
+                    // Bitmap b = new Bitmap(img);
+                    // System.Drawing.Image userImage = ImageResize.ResizeImage(b, new Size(162, 162));
+
+                    // var imageBase64 = Convert.ToBase64String(System.IO.File.ReadAllBytes(imagePAth));
+
+                }
+                @*  <img src="~/AdminLte3.2/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> *@
             </div>
             <div class="info">
                 @if (User.Identity.IsAuthenticated)
                 {
 
-                    <a asp-action="GetUser" asp-controller="User" asp-area="Admin"  class="d-block">@User.Identity.Name</a>
+                    <a asp-action="GetUser" asp-controller="User" asp-area="Admin" class="d-block">@User.Identity.Name</a>
                 }
                 @* <a href="#" class="d-block">Alexander Pierce</a> *@
             </div>
