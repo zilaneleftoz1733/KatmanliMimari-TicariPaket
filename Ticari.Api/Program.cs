@@ -1,7 +1,12 @@
-
 using Microsoft.EntityFrameworkCore;
-using Ticari.Api.Extensions;
 using Ticari.Entities.DBContexts;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Ticari.Api.Extensions;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using System.Reflection;
+
 
 namespace Ticari.Api
 {
@@ -21,21 +26,31 @@ namespace Ticari.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddFluentValidationAutoValidation();
+            //  builder.Services.AddValidatorsFromAssembly(Assembly.LoadFrom("Ticari.Validation"));
+            builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+
             // Cors politikasi uygulanacak
-            #region Enable Cors
-            builder.Services.AddCors(p =>
-                p.AddDefaultPolicy(
-                    b => b.AllowAnyHeader()
-                        .AllowAnyOrigin() // Gelen Butun Requestler'e izin veriri
-                        .AllowAnyMethod()) // 
-
-            );
+            #region Enable Cors => Yolgeçen hani
 
             builder.Services.AddCors(p =>
-               p.AddPolicy("myClient", b =>
-               b.WithOrigins("http://localhost:5248", "http://localhost:46399"))
+                 p.AddDefaultPolicy(
+                     b => b.AllowAnyHeader()
+                         .AllowAnyOrigin() // Gelen Butun Requestler'e izin veriri
+                         .AllowAnyMethod())
+             //.AllowCredentials()                  
 
-           );
+             );
+
+            #region Eger Belirli doman'lere izin verilecek ise yapilmasi gerekn ayarlar asagidadir
+            // builder.Services.AddCors(p =>
+            //    p.AddPolicy("myClient",b=>
+            //    b.WithOrigins("http://localhost:5248", "http://localhost:46399")) 
+
+            //); 
+            #endregion
 
             #endregion
             #region DbContext Registiration
@@ -54,7 +69,7 @@ namespace Ticari.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

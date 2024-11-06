@@ -2,6 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Ticari.Entities.DBContexts;
 using Ticari.Entities.Entities.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Ticari.Api.Controllers
 {

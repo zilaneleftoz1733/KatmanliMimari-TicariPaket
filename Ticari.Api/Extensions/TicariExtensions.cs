@@ -1,5 +1,8 @@
-﻿using DocumentFormat.OpenXml.ExtendedProperties;
-using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
+﻿using Microsoft.AspNetCore.WebSockets;
+using Microsoft.EntityFrameworkCore;
+using Ticari.BusinessLayer.Managers.Abstract;
+using Ticari.BusinessLayer.Managers.Concrete;
+using Ticari.Entities.DBContexts;
 
 namespace Ticari.Api.Extensions
 {

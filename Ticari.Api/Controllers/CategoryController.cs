@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ticari.Entities.Entities.Concrete;
 using Ticari.BusinessLayer.Managers.Abstract;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using FluentValidation;
 
 
 
@@ -9,7 +12,7 @@ namespace Ticari.Api.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
 
-    public class CategoryController(IManager<Category> manager) : ControllerBase
+    public class CategoryController(IManager<Category> manager, IValidator<Category> validator) : ControllerBase
     {
 
         [HttpGet]
@@ -35,12 +38,20 @@ namespace Ticari.Api.Controllers
         [HttpPost]
         public async Task<IResult> Insert(Category category)
         {
+
+            var validateResult = validator.Validate(category);
+            if (!validateResult.IsValid)
+            {
+
+                return Results.Ok(validateResult.Errors.FirstOrDefault().ErrorMessage);
+            }
+
             int result = manager.Create(category);
             if (result > 0)
             {
                 return Results.Created();
             }
-            return Results.Problem();
+            return Results.Problem("Beklenmedik bir hata olustu");
         }
     }
 }
