@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticari.BusinessLayer", "Tic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticari.WebMVC", "Ticari.WebMVC\Ticari.WebMVC.csproj", "{CD472A65-641E-47AA-A612-36416B1153AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicariTestConsole", "TicariTestConsole\TicariTestConsole.csproj", "{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicariTestConsole", "TicariTestConsole\TicariTestConsole.csproj", "{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticari.Api", "Ticari.Api\Ticari.Api.csproj", "{EBEF098A-371B-45B5-874F-69FF9DFD14FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC373EB5-44A4-40F5-A814-5AD2512FB1F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBEF098A-371B-45B5-874F-69FF9DFD14FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEF098A-371B-45B5-874F-69FF9DFD14FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEF098A-371B-45B5-874F-69FF9DFD14FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEF098A-371B-45B5-874F-69FF9DFD14FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
