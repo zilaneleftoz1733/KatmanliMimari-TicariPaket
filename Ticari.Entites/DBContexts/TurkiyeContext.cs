@@ -151,5 +151,5 @@ namespace Ticari.Entities.DBContexts
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-    }
+    } 
 }

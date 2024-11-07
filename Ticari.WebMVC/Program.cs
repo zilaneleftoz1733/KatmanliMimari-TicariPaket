@@ -2,6 +2,7 @@
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Ticari.Entities.DbContexts;
 using Ticari.Entities.DBContexts;
 using Ticari.WebMVC.Extensions;
 using Ticari.WebMVC.MyProfile;
@@ -20,10 +21,14 @@ namespace Ticari.WebMVC
 
             #region DbContext Registiration
             var constr = builder.Configuration.GetConnectionString("Ticari");
+            var turkiyeConStr = builder.Configuration.GetConnectionString("TurkiyeDb");
             builder.Services.AddDbContext<SQLDbContext>(options => options.UseSqlServer(constr));
+            builder.Services.AddDbContext<TurkiyeContext>(options => options.UseSqlServer(turkiyeConStr));
+
             #endregion
             builder.Services.AddAutoMapper(p => p.AddProfile<AutoMapperProfile>());
 
+            builder.Services.AddHttpClient();
 
             #region Notify Service Configuration
             builder.Services.AddNotyf(p =>

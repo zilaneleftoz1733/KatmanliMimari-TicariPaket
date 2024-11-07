@@ -4,6 +4,9 @@ using Ticari.BusinessLayer.Managers.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using FluentValidation;
+using Ticari.Api.Model;
+using System.Text.Json;
+using FluentValidation.Results;
 
 
 
@@ -11,7 +14,7 @@ namespace Ticari.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-
+    [Authorize]
     public class CategoryController(IManager<Category> manager, IValidator<Category> validator) : ControllerBase
     {
 
@@ -38,18 +41,27 @@ namespace Ticari.Api.Controllers
         [HttpPost]
         public async Task<IResult> Insert(Category category)
         {
-
-            var validateResult = validator.Validate(category);
+            ApiResult apiResult = new();
+            ValidationResult validateResult = await validator.ValidateAsync(category);
             if (!validateResult.IsValid)
             {
+                apiResult.hasError = true;
 
-                return Results.Ok(validateResult.Errors.FirstOrDefault().ErrorMessage);
+                foreach (var failure in validateResult.Errors)
+                {
+                    apiResult.errors.Add(failure.PropertyName, failure.ErrorCode);
+                }
+                var apiResultStr = JsonSerializer.Serialize<ApiResult>(apiResult);
+                return Results.Problem(apiResultStr);
             }
 
             int result = manager.Create(category);
             if (result > 0)
             {
-                return Results.Created();
+
+                apiResult.hasError = false;
+
+                return Results.Ok(apiResult);
             }
             return Results.Problem("Beklenmedik bir hata olustu");
         }

@@ -5,7 +5,7 @@ using Ticari.Entities.Entities.Concrete;
 
 namespace Ticari.Api.Validations
 {
-    public class CategoryValidation : AbstractValidator<Category>
+    public class CategoryValidation : AbstractValidator<Entities.Entities.Concrete.Category>
     {
         public CategoryValidation()
         {

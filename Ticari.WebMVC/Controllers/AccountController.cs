@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
 using Ticari.BusinessLayer.Managers.Abstract;
 using Ticari.Entities.Entities.Concrete;
 using Ticari.WebMVC.Models.VMs.Account;

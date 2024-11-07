@@ -1,8 +1,30 @@
-﻿@{
+﻿﻿@{
     ViewData["Title"] = "Home Page";
 }
 
+<select asp-items="@ViewBag.List" id="iller">
+</select>
+<select id="ilceler">
+    <option value="">Seciniz</option>
+</select>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        // var iller = document.getElementById("iller")
+         $(document).ready(funtions(){
+             $('#iller').on('change', function (e) {
+                 var optionSelected = $("option:selected", this);
+                 var valueSelected = this.value;
+                     ....
+                 });
+
+         })
+
+
+    </script>
+}
