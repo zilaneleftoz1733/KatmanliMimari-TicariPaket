@@ -5,12 +5,12 @@ using System.Security.Cryptography;
 using System.Text;
 using Ticari.Entities.Entities.Concrete;
 
-namespace Ticari.Api.Model
+namespace Ticari.Api.Models
 {
     public class TokenManager
     {
 
-        public async Task<Token> CreateAccessToken(MyUser user)
+        public async Task<Token> CreateAccessToken(MyUser user, IConfiguration configuration)
         {
             Token token = new Token();
             token.Expration = DateTime.Now.AddMinutes(30);
@@ -26,13 +26,13 @@ namespace Ticari.Api.Model
          };
 
 
-
-            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Benim Super Sifrem 123qweasd!!"));
+            var mypassword = configuration.GetSection("ApiConfig:ApiPassword").Value;
+            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(mypassword));
 
             SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             JwtSecurityToken securityToken = new JwtSecurityToken(
-                issuer: "https://localhost:7022", //Bu token i kim uretti
-                audience: "https://localhost:7022",//Bu token kimler tarafindan kullanilacak
+                issuer: configuration.GetSection("ApiConfig:issuer").Value, //Bu token i kim uretti
+                audience: configuration.GetSection("ApiConfig:audience").Value,//Bu token kimler tarafindan kullanilacak
                 expires: token.Expration,
                 notBefore: DateTime.Now,// Bu token uretildikten ne kadar sure sonra devreye girsin
                 signingCredentials: signingCredentials,
@@ -57,11 +57,4 @@ namespace Ticari.Api.Model
             }
         }
     }
-    public class Token
-    {
-        public string AccessToken { get; set; }
-        public string RefreshToken { get; set; }
-        public DateTime Expration { get; set; }
-    }
 }
-

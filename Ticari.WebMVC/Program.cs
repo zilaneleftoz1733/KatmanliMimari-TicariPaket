@@ -2,7 +2,8 @@
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Ticari.Entities.DbContexts;
+using System.Text;
+using System.Text.Json;
 using Ticari.Entities.DBContexts;
 using Ticari.WebMVC.Extensions;
 using Ticari.WebMVC.MyProfile;
@@ -11,6 +12,7 @@ namespace Ticari.WebMVC
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);

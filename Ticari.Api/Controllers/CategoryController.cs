@@ -8,8 +8,6 @@ using Ticari.Api.Model;
 using System.Text.Json;
 using FluentValidation.Results;
 
-
-
 namespace Ticari.Api.Controllers
 {
     [Route("api/[controller]/[action]")]

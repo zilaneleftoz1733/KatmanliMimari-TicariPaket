@@ -7,11 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Ticari.Entities.Entities.Concrete;
 
-
-
-
-
-
 namespace Ticari.Entities.DBContexts
 {
     public class SQLDbContext : DbContext

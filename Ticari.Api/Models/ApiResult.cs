@@ -1,4 +1,4 @@
-﻿namespace Ticari.Api.Model
+﻿namespace Ticari.Api.Models
 {
     public class ApiResult
     {

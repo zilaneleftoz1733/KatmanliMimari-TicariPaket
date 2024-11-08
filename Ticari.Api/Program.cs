@@ -1,16 +1,14 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Ticari.Entities.DBContexts;
+using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Ticari.Api.Extensions;
-using FluentValidation.AspNetCore;
-using FluentValidation;
-using System.Reflection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text.Encodings;
-using System.Text;
-
+using Ticari.Entities.DBContexts;
+using Ticari.WebMVC.Extensions;
 
 namespace Ticari.Api
 {
@@ -18,6 +16,8 @@ namespace Ticari.Api
     {
         public static void Main(string[] args)
         {
+            //SqlDbContext dbContext = new SqlDbContext();
+            //dbContext.Database.MigrateAsync().Wait();
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -74,10 +74,10 @@ namespace Ticari.Api
                        ValidateIssuer = true, // Toke'i olustuan veya yayinlayicinin adi
                        ValidateLifetime = true, // Token degerinin kullanim suresinin dogrulanmasi aktif hale getirir
                        ValidateIssuerSigningKey = true,//Token degerinin bu uygulamaya ait olup olmadigini anlamamizi saglayan security key dogrulamasini aktiflestiriyoruz
-                       ValidIssuer = "https://localhost:7003", //Web Apimizin calisan adresini yaziyoruz
-                       ValidAudience = "https://localhost:7003",
-                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("AliVeli4950")),
-                       ClockSkew = TimeSpan.FromMinutes(-10)
+                       ValidIssuer = builder.Configuration.GetSection("ApiConfig:issuer").Value, //Web Apimizin calisan adresini yaziyoruz
+                       ValidAudience = builder.Configuration.GetSection("ApiConfig:audience").Value,
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("ApiConfig:ApiPassword").Value)),
+                       ClockSkew = TimeSpan.Zero
 
                    });
             #endregion

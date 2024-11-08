@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Ticari.Entities.DbContexts;
 using Ticari.Entities.DBContexts;
 using Ticari.Entities.TurkiyeDb;
 
